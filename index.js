@@ -8,11 +8,6 @@ var io = require('socket.io')(http);
 var path = require('path');
 var uuid = require('node-uuid');
 
-io.configure(function () { 
-  io.set("transports", ["xhr-polling"]); 
-  io.set("polling duration", 10); 
-}); 
- 
 app.use(methodOverride());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
