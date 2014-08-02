@@ -1,9 +1,31 @@
 {
-  "name": "socket-chat-example",
-  "version": "0.0.1",
+  "name": "footTouchPlayerrrdemo",
+  "version": "2.0.0",
   "description": "my first socket.io app",
   "dependencies": {
-    "express": "4.3.1",
-    "socket.io": "1.0.2"
-  }
+    "express": "^4.3.1",
+    "socket.io": "^1.0.2",
+    "logfmt": "^1.1.2",
+    "http": "0.0.0",
+    "path": "^0.4.9",
+    "node-uuid": "^1.4.1",
+    "method-override": "^2.1.2",
+    "body-parser": "^1.5.2",
+    "errorhandler": "^1.1.1"
+  },
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ygtw/footTouchPlayerrrdemo.git"
+  },
+  "author": "ygtw",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ygtw/footTouchPlayerrrdemo/issues"
+  },
+  "homepage": "https://github.com/ygtw/footTouchPlayerrrdemo"
 }
