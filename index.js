@@ -54,7 +54,7 @@ io.on('connection', function(socket){
     socket.broadcast.to(ida).emit('init', ida);
   });
 
-
+   
 
 });
 
