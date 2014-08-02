@@ -1,0 +1,340 @@
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<head>
+  <title>footTouchPlayerrr</title>
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+      <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+
+  <!-- Chang URLs to wherever Video.js files will be hosted -->
+  <link href="video-js.css" rel="stylesheet" type="text/css">
+  <!-- video.js must be in the <head> for older IEs to work. -->
+  <script src="video.js"></script>
+<script type="text/javascript" src="qrcode.js"></script>
+
+   <script src="/socket.io/socket.io.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+
+<script type="text/javascript">
+
+
+
+
+
+
+</script>
+
+    <script>
+    var socket = io();
+
+    socket.on('connect', function () {
+    console.log(socket.io.engine.id);
+
+    mobileurl=location.href+"foot.html?uuid=" + socket.io.engine.id 
+
+    //$("#stat").html( "<a style='font-size:large' href='"+ mobileurl + "'> 手機  </a>")
+    new QRCode(document.getElementById("qrcode"), mobileurl );
+
+
+shortUrl = ''
+
+$.ajax({
+        url: 'https://www.googleapis.com/urlshortener/v1/url?shortUrl=http://goo.gl/fbsS&key=AIzaSyANFw1rVq_vnIzT4vVOwIw3fF1qHXV7Mjw',
+        type: 'POST',
+        contentType: 'application/json; charset=utf-8',
+        data: '{ longUrl: "' + mobileurl +'"}',
+        dataType: 'json',
+        success: function(response) {
+           
+            shortUrl = response.id
+            $("#short").html(shortUrl)
+        }
+     });
+
+
+
+});
+
+      $('form').submit(function(){
+        socket.emit('chat message', $('#m').val());
+        $('#m').val('');
+        return false;
+      });
+
+      socket.on('chat message', function(msg){
+    //    $('#messages').append($('<li>').text(msg));
+        testt();
+        console.log( msg )
+      });
+
+        socket.on('init', function(msg){
+        console.log(msg)
+        $("#scanfield").hide("slow")
+        $("#fileselect").show("slow");
+
+        
+      });
+
+      
+
+
+
+    </script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-53417443-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+  <!-- Unless using the CDN hosted version, update the URL to the Flash SWF -->
+  <script>
+
+
+  $(function(){
+if(navigator.userAgent.match(/Android/i)){
+    window.scrollTo(0,1);
+ }
+
+pflag = 0 ;
+var uuid = "0";
+
+(function localFileVideoPlayerInit(win) {
+    var URL = win.URL || win.webkitURL,
+        displayMessage = (function displayMessageInit() {
+            var node = document.querySelector('#message');
+
+            return function displayMessage(message, isError) {
+                node.innerHTML = message;
+                node.className = isError ? 'error' : 'info';
+            };
+        }()),
+        playSelectedFile = function playSelectedFileInit(event) {
+            var file = this.files[0];
+
+            var type = file.type;
+
+            var videoNode = document.querySelector('video');
+
+            var canPlay = videoNode.canPlayType(type);
+
+            canPlay = (canPlay === '' ? 'no' : canPlay);
+
+            var message = 'Can play type "' + type + '": ' + canPlay;
+
+            var isError = canPlay === 'no';
+
+            displayMessage(message, isError);
+
+               
+
+                             $("#fileselect").hide();
+                    $("#stat").html('<i class="fa fa-play"></i><br><br><span style="font-size:large">腳輕觸螢幕暫停</span>')
+
+
+            if (isError) {
+                alert('格式不支援')
+                             $("#fileselect").show();
+                            $("#stat").html('')
+
+                return;
+            }
+
+
+
+            var fileURL = URL.createObjectURL(file);
+
+            videoNode.src = fileURL;
+            pflag =1 ;
+              var myPlayer = videojs("example_video_1");
+
+                myPlayer.play()
+
+                    var socket = io();
+
+                    
+
+
+
+
+
+        },
+        inputNode = document.querySelector('input');
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+    if (!URL) {
+        displayMessage('Your browser is not ' + 
+           '<a href="http://caniuse.com/bloburls">supported</a>!', true);
+        
+        return;
+    }                
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+    inputNode.addEventListener('change', playSelectedFile, false);
+}(window));
+
+
+});
+
+$( document ).ready(function() {
+  // Handler for .ready() called.
+            videojs.options.flash.swf = "video-js.swf";
+
+     
+            $("#playy").bind('onclick', function()
+            {
+
+              sendmsg()
+
+            })
+
+});
+
+
+
+  </script>
+
+  <script type="text/javascript">
+function sendmsg( event ){
+    
+    var socket = io();
+
+            socket.emit('init','x');
+  }
+
+function testt (argument) {
+//
+
+
+
+
+
+
+
+ // var myPlayer2 = videojs("vv");
+ // myPlayer2.play()
+ // myPlayer2.muted(true);
+ /*
+var element = document.getElementById('vv');
+    element.muted = "muted";
+    element.play()
+*/
+
+//  if(pflag==0) return;
+  // body...
+  var myPlayer = videojs("example_video_1");
+
+  var isPaused = myPlayer.paused();
+  console.log(isPaused)
+
+
+
+  if(isPaused)
+  {
+                   $("#stat").html('<i class="fa fa-play"></i>')
+ 
+    //     <i class="fa fa-pause"></i>
+var whereYouAt = myPlayer.currentTime();
+myPlayer.currentTime(whereYouAt-2); // 2 minutes into the video
+
+//
+
+    myPlayer.play()
+
+  }
+  else
+  {
+        $("#stat").html('<i class="fa fa-pause"></i>')
+
+ myPlayer.pause()
+  }
+
+}
+
+function openfiles (argument) {
+  // body...
+  $("#fileinput").click()
+}
+
+  </script>
+
+
+<style type="text/css">
+
+
+
+body
+{
+  margin: 0;
+  padding: 0;
+}
+
+#playy , #stat {
+
+    height:80vh;
+
+
+}
+
+</style>
+</head>
+<body>
+ <ul id="messages"></ul>
+    <div id="playy" style="background: lightgray; text-align:center " onclick="sendmsg()">
+      <br>
+     <h1> footTouchPlayerrr </h1>
+
+     <div id="scanfield">
+<div id="qrcode" style="padding:20px; display: inline-block; text-align: center; "></div>
+
+<br>
+請用手機掃描上面網址或直接開啓 <span id='short'> </span> 
+</div>
+<div id="fileselect" style="display:none">
+  選擇您的逐字稿聲音檔<br><br>
+  請放心，您的檔案不會被上傳<br><br>
+        <img src="open-file-icon.png" onclick="openfiles()"/>
+
+<input id="fileinput" type="file" accept="*" style="display:none"/>
+
+</div>
+
+<div id="stat" style="font-size:100pt; text-align:center">
+</div>
+
+
+
+    </div>
+
+
+  <video id="example_video_1" class="video-js vjs-default-skin" controls preload="preload" width="100%" height="100">
+    <track kind="captions" src="demo.captions.vtt" srclang="en" label="English"></track><!-- Tracks need an ending tag thanks to IE9 -->
+    <track kind="subtitles" src="demo.captions.vtt" srclang="en" label="English"></track><!-- Tracks need an ending tag thanks to IE9 -->
+    <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
+  </video>
+
+
+
+
+<div id="message"></div>
+
+<!--
+<video id="vv" width="10" height="10" controls  preload="preload"    muted loop autoplay>
+    <source src="mute.mp4" />
+  Your browser does not support the video tag.
+</video>
+-->
+
+
+
+ygtw @ 2014
+</body>
+</html>
+
