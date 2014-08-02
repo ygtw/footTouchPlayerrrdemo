@@ -58,8 +58,10 @@ io.on('connection', function(socket){
 
 });
 
+var ipaddr = process.env.OPENSHIFT_INTERNAL_IP || "127.0.0.1";
+var port = process.env.OPENSHIFT_INTERNAL_PORT || 8080;
 
 
-http.listen((process.env.PORT || 5000),"0.0.0.0" , function(){
+http.listen(port,ipaddr , function(){
   console.log('listening on *:3000');
 });
