@@ -111,6 +111,18 @@
             var uuid = "0";
 
 
+
+  $(document).keyup(function(evt) {
+    if (evt.keyCode == 32) {
+      space = false;
+      testt();
+    }
+  }).keydown(function(evt) {
+    if (evt.keyCode == 32) {
+      space = true;
+    }
+  });
+
             (function localFileVideoPlayerInit(win) {
                 var URL = win.URL || win.webkitURL,
                     displayMessage = (function displayMessageInit() {
