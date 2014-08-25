@@ -112,17 +112,21 @@
 
 
 
-  $(document).keyup(function(evt) {
-    if (evt.keyCode == 32) {
-      space = false;
-      //testt();
-    }
-  }).keydown(function(evt) {
-    if (evt.keyCode == 32) {
-      space = true;
-      testt();
-    }
-  });
+var allowed = true;
+
+$(document).keydown(function(e) { 
+  if (!allowed) return;
+  allowed = false;
+  testt()
+  //...
+});
+
+$(document).keyup(function(e) { 
+  allowed = true;
+});
+$(document).focus(function(e) { 
+  allowed = true;
+});
 
             (function localFileVideoPlayerInit(win) {
                 var URL = win.URL || win.webkitURL,
